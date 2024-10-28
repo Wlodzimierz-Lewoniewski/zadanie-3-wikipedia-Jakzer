@@ -46,7 +46,8 @@ for idx,link in enumerate(links):
         przypis_url=re.findall("<a.+?class=\"external text\" href=\"(https?.+?)\".*?>",przypisy)
         print(" | ".join(przypis_url[:3]))
     except IndexError:
-        przypis_url=re.findall("<a.+?class=\"external text\" href=\"(https?.+?)\".*?>",soup)
+        przypisy = re.split(r"<h2 id=\"Linki_zewnętrzne\">",soup)[0]
+        przypis_url=re.findall("<a.+?class=\"external text\" href=\"(https?.+?)\".*?>",przypisy)
         print(" | ".join(przypis_url[:3]))
     #
     kategorie = re.split(r"<a href=\"/wiki/Specjalna:Kategorie\"",soup)[1]
