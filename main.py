@@ -17,17 +17,22 @@ for link in links:
     response = requests.get(url)
     soup = str(BeautifulSoup(response.text, 'html.parser'))
     # 
-    break
-    sub_links=re.findall("<a href=\"(.+?)\" title=\"(.+?)\">",soup)
+    sub_links=re.findall("<a.+?href=\"(/wiki.+?)\" title=\"(.+?)\">",soup)
     sub_links_good =[]
     for l in sub_links:
         isBad=False
+        if ":" in l[0]:
+            isBad=True
+        if "Ziemia" in l[1]:
+            isBad=True
+        if re.search(r"\[",l[1]):
+            isBad=True
         for p in pom:
             if p in l[0]:
                 isBad=True
         if not isBad:
             sub_links_good.append(l)
-    print(" | ".join([x[1] for x in sub_links_good[5:10]]))
+    " | ".join([x[1] for x in sub_links_good[:5]])
     #
     images=re.findall("<img.+src=\"(//.+?)\"",soup)
     print(" | ".join(images[:3]))
