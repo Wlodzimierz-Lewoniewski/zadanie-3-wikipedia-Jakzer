@@ -40,12 +40,13 @@ for idx,link in enumerate(links):
     else:
         print(" | ".join(images[:3]))
     #
-    przypisy = re.split(r"<h2 id=\"Przypisy.+h2>",soup)[1]
+    przypisy = re.split(r"<h2 id=\"Przypisy.+?h2>",soup)[1]
+    przypisy = re.split(r"<h2 id=\"Linki_zewnętrzne\">",przypisy)[0]
     przypis_url=re.findall("<a.+?class=\"external text\" href=\"(https?.+?)\".*?>",przypisy)
-    if (kategoria=="Państwa członkowskie Unii Europejskiej" and idx==0):
-        print(" | ".join(przypis_url[:2]))
-    else:
-        print(" | ".join(przypis_url[:3]))
+    # if (kategoria=="Państwa członkowskie Unii Europejskiej" and idx==0):
+    #     print(" | ".join(przypis_url[:2]))
+    # else:
+    print(" | ".join(przypis_url[:3]))
     #
     kategorie = re.split(r"<a href=\"/wiki/Specjalna:Kategorie\"",soup)[1]
     kategorie_text=re.findall("<a href=\"/wiki/Kategoria.+?title.+?>(.+?)</a>",kategorie)
