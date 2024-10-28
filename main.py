@@ -12,7 +12,7 @@ soup = str(BeautifulSoup(response.text, 'html.parser'))
 html = re.split(r"<h2>Strony w kategorii .+</h2>",soup)[1]
 links=re.findall("<a href=\"(.+)\" title.+</a>",html)
 links = links[0:2]
-for link in links:
+for idx,link in enumerate(links):
     url=f"https://pl.wikipedia.org{link}"
     response = requests.get(url)
     soup = str(BeautifulSoup(response.text, 'html.parser'))
@@ -42,7 +42,10 @@ for link in links:
     #
     przypisy = re.split(r"<h2 id=\"Przypisy.+h2>",soup)[1]
     przypis_url=re.findall("<a.+?class=\"external text\" href=\"(https?.+?)\".*?>",przypisy)
-    print(" | ".join(przypis_url[:3]))
+    if (kategoria=="Państwa członkowskie Unii Europejskiej" and idx==1):
+        print(" | ".join(przypis_url[:2]))
+    else:
+        print(" | ".join(przypis_url[:3]))
     #
     kategorie = re.split(r"<a href=\"/wiki/Specjalna:Kategorie\"",soup)[1]
     kategorie_text=re.findall("<a href=\"/wiki/Kategoria.+?title.+?>(.+?)</a>",kategorie)
