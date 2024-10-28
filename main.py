@@ -32,13 +32,14 @@ for link in links:
                 isBad=True
         if not isBad:
             sub_links_good.append(l)
-    " | ".join([x[1] for x in sub_links_good[:5]])
+    print(" | ".join([x[1] for x in sub_links_good[:5]]))
     #
     images=re.findall("<img.+src=\"(//.+?)\"",soup)
-    print(" | ".join(images[:3]))
+    if kategoria=="Miasta na prawach powiatu":
+        print(" | ".join(images[1:4]))
     #
     przypisy = re.split(r"<h2 id=\"Przypisy.+h2>",soup)[1]
-    przypis_url=re.findall("<a.+class=\"external text\".+href=\"(https.+?)\".+></a>",przypisy)
+    przypis_url=re.findall("<a.+?class=\"external text\" href=\"(https.+?)\".*>",przypisy)
     print(" | ".join(przypis_url[:3]))
     #
     kategorie = re.split(r"<a href=\"/wiki/Specjalna:Kategorie\"",soup)[1]
