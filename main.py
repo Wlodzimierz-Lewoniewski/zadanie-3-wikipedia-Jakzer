@@ -37,6 +37,8 @@ for link in links:
     images=re.findall("<img.+src=\"(//.+?)\"",soup)
     if kategoria=="Miasta na prawach powiatu":
         print(" | ".join(images[1:4]))
+    else:
+        print(" | ".join(images[:3]))
     #
     przypisy = re.split(r"<h2 id=\"Przypisy.+h2>",soup)[1]
     przypis_url=re.findall("<a.+?class=\"external text\" href=\"(https?.+?)\".*?>",przypisy)
