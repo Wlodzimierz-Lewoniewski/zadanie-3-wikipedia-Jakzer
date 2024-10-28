@@ -39,7 +39,7 @@ for link in links:
         print(" | ".join(images[1:4]))
     #
     przypisy = re.split(r"<h2 id=\"Przypisy.+h2>",soup)[1]
-    przypis_url=re.findall("<a.+?class=\"external text\" href=\"(https?.+?)\".*>",przypisy)
+    przypis_url=re.findall("<a.+?class=\"external text\" href=\"(https?.+?)\".*?>",przypisy)
     print(" | ".join(przypis_url[:3]))
     #
     kategorie = re.split(r"<a href=\"/wiki/Specjalna:Kategorie\"",soup)[1]
