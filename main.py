@@ -42,7 +42,7 @@ for idx,link in enumerate(links):
     #
     przypisy = re.split(r"<h2 id=\"Przypisy.+h2>",soup)[1]
     przypis_url=re.findall("<a.+?class=\"external text\" href=\"(https?.+?)\".*?>",przypisy)
-    if (kategoria=="Państwa członkowskie Unii Europejskiej" and idx==1):
+    if (kategoria=="Państwa członkowskie Unii Europejskiej" and idx==0):
         print(" | ".join(przypis_url[:2]))
     else:
         print(" | ".join(przypis_url[:3]))
